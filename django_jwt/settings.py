@@ -6,8 +6,9 @@ SECRET_KEY = '1kp84t2z7hsrngyyhw-fqcm^1%vrxzj)957j#0)^tk(t5)!!h6'
 
 DEBUG = True
 
-
 ALLOWED_HOSTS = ['10.0.11.157', '127.0.0.1', 'localhost', '0.0.0.0']
+
+AUTH_USER_MODEL = 'api.CustomUser'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,6 +21,7 @@ INSTALLED_APPS = [
     'api',
 
     'rest_framework',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -90,4 +92,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
 }

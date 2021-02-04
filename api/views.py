@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import UserSerializer
+from .serializers import CustomUserSerializer
 
 # https://medium.com/swlh/flutter-signup-login-application-with-django-backend-1-7c79e2c0354a
 
@@ -16,11 +16,11 @@ class UserRecordView(APIView):
     """
     def get(self, format=None):
         users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
+        serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid(raise_exception=ValueError):
             serializer.create(validated_data=request.data)
             return Response(

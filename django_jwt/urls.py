@@ -12,4 +12,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('api/', include('api.urls', namespace='api')),
+
+    path('', include('djoser.urls')),
+    path('', include('djoser.urls.jwt')),
 ]
