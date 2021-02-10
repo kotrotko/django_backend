@@ -4,8 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import CustomUserSerializer
-
+from .models import CustomUser
+from .serializers import CustomUserCreateSerializer
 # https://medium.com/swlh/flutter-signup-login-application-with-django-backend-1-7c79e2c0354a
 
 class UserRecordView(APIView):
@@ -15,12 +15,12 @@ class UserRecordView(APIView):
     a POST request allows to create a new user.
     """
     def get(self, format=None):
-        users = User.objects.all()
-        serializer = CustomUserSerializer(users, many=True)
+        users = CustomUser.objects.all()
+        serializer = CustomUserCreateSerializer(users, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = CustomUserSerializer(data=request.data)
+        serializer = CustomUserCreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=ValueError):
             serializer.create(validated_data=request.data)
             return Response(

@@ -97,3 +97,15 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+DJOSER = {
+
+    'PERMISSIONS': {
+        'user': []
+    },
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.CustomUserCreateSerializer',
+        'current_user': 'api.serializers.PrivateCustomUserSerializer',
+        'token_obtain': 'api.serializers.TokenObtainSerializer'
+    }
+}
